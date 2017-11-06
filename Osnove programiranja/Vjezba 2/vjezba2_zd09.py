@@ -2,7 +2,7 @@
 # Vježba 2, zadatak 9
 
 broj = int(input('Unesite četveroznamenkasti broj: '))
-while broj / 1000 > 10:
+while broj / 1000 >= 10:
     print('Uneseni broj sadrži više od četiri znamenke.')
     broj = int(input('Unesite četveroznamenkasti broj: '))
 
