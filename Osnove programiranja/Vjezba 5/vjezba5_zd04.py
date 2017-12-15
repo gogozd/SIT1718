@@ -8,3 +8,12 @@ for i in niz:
   if i in eng_abc:
     print(i)
     
+'''
+niz = str(input('Unesite niz znakova: '))
+
+import string
+
+for i in niz:
+  if i in string.ascii_letters:
+    print(i)
+'''
