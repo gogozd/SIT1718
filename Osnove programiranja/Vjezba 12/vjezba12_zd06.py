@@ -18,6 +18,7 @@ def izvlacenje_brojeva():
             broj = random.randint(1, 39)
         lista1.append(broj)
 
+# nije do kraja napravljen zadatak
 def main():
     lista2 = []
     for k in range(7):
