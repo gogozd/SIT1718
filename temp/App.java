@@ -4,22 +4,38 @@ public class App {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] PrviNiz = {"Vasa", "vana plurimum", "sonant"};
-		String[] DrugiNiz = new String[4];
-		
+		double a;
+		double b;
+		double c;
+		int brojac = 0;
 		Scanner sc = new Scanner(System.in);
 		
-		for (int i = 0; i < DrugiNiz.length; i++) {
-
-			System.out.println("Unesite string za "+ i +" element niza: ");
-			DrugiNiz[i] = sc.nextLine();			
-		}
+		System.out.println("Unesite vrijednost a: ");
+		a = sc.nextDouble();
+		System.out.println("Unesite vrijednost b: ");
+		b = sc.nextDouble();
 		
-		System.out.println(PrviNiz[0] + " " + PrviNiz[1] + " " + PrviNiz[2]);
-		for (int i = 0; i < DrugiNiz.length; i++) {
+		for (int i = 1; i <= 50; i++) {
+			c = (a + b) / 2;
 			
-			System.out.println(DrugiNiz[i]);
-
+			double jednadzba = (((2 * c - 1) / (Math.abs(4 - 2 * c))) + 1 - ((c) / (Math.abs (c - 2))));
+			
+			if (jednadzba > 0) {
+				a = c;
+			} else {
+				b = c;
+			}
+			
+			brojac = brojac + 1;
+			System.out.println(brojac + ".) a = " + a + ", b = " + b);
+			
+			double d = Math.abs(a - b);
+			
+			if (d < 0.001) {
+				System.out.println("Dozvoljena greska od 0.001 dobivena je u " + brojac + " pokusaju.");
+				break;
+			}
 		}
 	}
+
 }
