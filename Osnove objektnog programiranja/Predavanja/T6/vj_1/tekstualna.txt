@@ -1,0 +1,7 @@
+1: Prva linija teksta
+2:
+3: Nova linija teksta
+4: 547645
+5:
+6:
+7: Kraj!
