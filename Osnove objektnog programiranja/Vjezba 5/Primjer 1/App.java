@@ -1,3 +1,7 @@
+// Potrebno je kreirati dvije klase PDS_Student i DS_Student koje proširuju nadklasu Student. Obje klase trabaju ponovno definirati
+// metodu infoStud, a implementirati completingStudy koja je u polaznoj klasi deklariarana kao apstraktna. UML dijagram klasa za ovaj
+// zadatak prikazan je na slici 1.
+
 import java.text.ParseException;
 
 public class App {
