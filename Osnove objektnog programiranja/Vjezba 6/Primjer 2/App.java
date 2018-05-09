@@ -1,3 +1,12 @@
+// Iz neke baze podataka dobili ste ispis koji sadrži sljedeće zapise (records):
+// id = 21, Name = Stipe
+// id = 159, Name = Divna
+// id = 985, Name = Etna
+// id = 455, Name = Petar
+// id = 5788, Name = Vlatka
+// Ukoliko smatramo da su id jedinstveni koju strukturu podataka bi koristili za pohranu ovih zapisa? Pohranite zapise u tu strukturu
+// i potom ispišite sve elemente strukture korištenjem for each petlje.
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
