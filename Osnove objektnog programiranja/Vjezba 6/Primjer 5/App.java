@@ -1,3 +1,9 @@
+// Zadana je lista niza (ArrayList) u koju dodajete elemente tipa String (auto, svemirski brod, avion, helikopter, jedrilica,
+// gliser, romobil, bicikla) u zadanom redoslijedu. Ispišite listu bez sortiranja. Otvorite API za sučelje Collections, pogledajte
+// metodu sort i potom je primjenite na sortiranje vaše list. Kakav je sada rezultat?
+// U drugom dijelu zadatka potrebno je sortirati elemente prema duljini stringa. Za tu svrhu koristite drugu definiciju metode sort
+// u istom sučelju.
+
 import java.util.ArrayList;
 import java.util.Collections;
 
