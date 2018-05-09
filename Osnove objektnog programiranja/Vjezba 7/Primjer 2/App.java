@@ -1,3 +1,8 @@
+// Napravite ArrayList koja sadrži cijele brojeve. Popunjavanje liste načinite s posebno kreiranom metodom koja generira
+// slučajne brojeve iz izabranog raspona (npr. 10 do 1000) na način da broj elemenata koje treba dodati u listu prima kao
+// ulazni atribut (parametar). Načinite sortiranje tog niza u prirodnom slijedu i obrnutim redoslijedom. Za slučaj sortiranja
+// obrnutim redosliejdom koristite anonimnu klasu.
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
