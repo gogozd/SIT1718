@@ -1,0 +1,102 @@
+*******************************
+DODAVANJE DATUMA PREKO SET DATE
+
+// "Year" je zapravo broj godina od 1900 (znaci 2018 je setYear(118))
+
+SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Date dateNew = new Date();
+		dateNew.setMonth(4);
+		dateNew.setDate(6);
+		dateNew.setYear(118);
+		
+		System.out.println(sdf.format(dateNew));
+
+******************************
+DODAVANJE DATUMA STRINGOM U OBLIKU 04-12-2010
+
+Scanner sc = new Scanner(System.in);
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		System.out.println("Please enter the date in the form dd-MM-yyyy:");
+		String date;
+		date = sc.nextLine();
+		Date datum = df.parse(date);
+		sc.close();
+		System.out.println(df.format(datum));
+
+
+*******************************
+ITERIRANJE I ISPIS PO 2D ARRAY-u
+
+// String[] a je jedan red podataka
+
+for(String[] a : podaciArray) {
+				System.out.println(Arrays.toString(a));
+			}
+
+*******************************
+ISPIS PODATAKA IZ FILE-a BEZ NULL-a
+
+BufferedReader reader = null;
+
+		try {
+			File file = new File("C: ..... \\studenti.csv");
+			reader = new BufferedReader(new FileReader(file));
+
+			String line;
+
+			while ((line = reader.readLine()) != null) {
+        			system.out.println(line);
+    			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+******************************
+ISPIS PODATAKA SA NULL VRIJEDNOSTIMA
+
+// kod je isti kao u prethodnom sluèaju samo umjesto while((line = reader.readLine()) != null)
+moze biti ovo (pod pretpostavkom da ima 10 redaka, inace treba navesti koliko redaka):
+
+for (int i = 0; i < 10; i++) {
+				line = reader.readLine();
+				System.out.println(line);
+			}
+
+******************************
+GENERIRANJE 2D ARRAYA BEZ NULL-a
+
+//pretpostavka je da znamo dimenzije arraya
+
+public String[][] gen2DArr(){
+		BufferedReader reader = null;
+		String[][] lista = new String[5][1];
+		try {
+			File file = new File("C: ...... \\studenti.csv");
+			reader = new BufferedReader(new FileReader(file));
+
+			String line;
+
+			for (int i = 0; i < 5; i++) {
+				line = reader.readLine();
+				lista[i][0] = line;
+			}
+			return lista;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		return lista;
+		}
+	}
+
