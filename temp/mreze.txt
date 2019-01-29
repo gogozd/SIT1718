@@ -180,6 +180,9 @@ Svi ne-korijenski komutatori biraju najbolje sučelje prema korijenskom komutato
 Na preostalim poveznicama se biraju sučelja koja će se postaviti u stanje: Designated
 Sva ostala sučelja se postavljaju u stanje: Blocking
 
+EtherChannel
+pruža prividnu ukupnu brzinu objedinjenih fizičkih veza slanjem određenih paketa kroz određene fizičke veze!
+
 IP (eng. Internet protocol)
 	-	Neovisan o nižim i višim protokolima
 	-	Datagramski način rada
