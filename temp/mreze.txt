@@ -94,6 +94,10 @@ Brine se da podatci stignu do odgovarajuće odredišnog uređaja.
 Usmjeritelj je L3 uređaj koji služi za povezivanje dvije ili više mreža.
 Uvodi adresiranje preko IP adrese.
 Protokoli: IP, ICMP, ARP
+Mrežni sloj može pružati dvije vrste usluga:
+	spojna (potvrda primitka paketa, prije slanja se radi uspostava	komunikacije, nakon završetka se prekida)
+	nespojna (današnji Internet)
+Osnova uloga mu je dostaviti pakete od izvorišnog krajnjeg čvora do odredišnog krajnjeg čvora, izravno ili preko niza međučvorova.
 
 Sloj podatkovne poveznice
 Sloj podatkovne poveznice pruža usluge mrežnom sloju, a kotisti usluge fizičkog sloja 
@@ -147,3 +151,211 @@ Ethernet
 predstavlja skup tehnologija primjenjenih unutar lokalnih mreža. Na fizičkoj razini ethernet definira raspored ožičenja te vrste i razine signala za prijenos podataka. Na razini podatkovne veze ethernet definira način pristupa mediju za prijenos podataka (MAC – Media Access Control) i definira zajednički adresni format. Standardiziran je kroz IEEE 802.3 standard.
 Podsloj MAC  ima za zadaću dinamičku dodjelu prijenosnog medija stanici u lokalnoj mreži. Izvodi se na mrežnoj kartici stanice ili u priključku mrežnog uređaja (port). Pristupni protokoli su pravila koja određuju redosljed pristupanja mediju.
 
+VLAN 802.1Q – eng. Virtual Local Area Network
+je logičko grupiranje korisnika neovisno o fizičkoj mreži. 
+Uloga manjih domena razašiljanja je ograničavanje broja uređaja koji sudjeluju u razašiljanju podataka
+
+Pristupni link
+Linkovi koji služe za spajanje krajnjih uređaja s komutatorom. Okviri koji se prenose preko pristupnih linkova su neoznačeni.
+Jedan pristupni link može biti dodijeljen samo jednom VLAN-u.
+
+Glavni link
+Glavni link ne pripada niti jednom VLAN-u. 
+Najčešće služi za spajanje različitih komutatora ili komutatora s usmjeriteljem.
+Okviri koji se prenose preko glavnog linka su označeni. 
+Ukoliko na glavni link dospiju okviri koji su neoznačeni na odredištu se oni pridjeljuju nativnom VLAN-u.
+
+LACP – eng. Link Agregation Protocol  IEEE 802.3ad
+Osim korištenja protokola LACP agregacija linka može biti i statička. Problem nastaje u slučaju greški prilikom konfiguracije. Uvijek je bolje koristiti protokol.
+
+STP – eng. Spanning Tree Protocol 
+X BROADCAST STORM
+X UNSTABLE MAC ADR. TABLE
+X DUPLICATE FRAMES
+U pravilu komutatori dolaze s već konfiguriranim protokolom STP.
+Nije potrebna posebna konfiguracija da bi protokol radio.
+Izaberi korijenski komutator (root bridge)
+Sva sučelja korijenskog komutatora stavi u stanje: Forwarding
+Svi ne-korijenski komutatori biraju najbolje sučelje prema korijenskom komutatoru (Root Port)
+Na preostalim poveznicama se biraju sučelja koja će se postaviti u stanje: Designated
+Sva ostala sučelja se postavljaju u stanje: Blocking
+
+IP (eng. Internet protocol)
+	-	Neovisan o nižim i višim protokolima
+	-	Datagramski način rada
+	-	Nespojna usluga
+	-	Nepotvrđena usluga 
+	-	Nema mehanizama kontrole toka
+	-	Nema garancije očuvanja  redoslijeda datagrama
+Glavna uloga IP protokola u TCP/IP stogu je da primi podatke od višeg sloja (npr TCP protokola) smjesti ih u podatkovno polje IP datagrama kojeg predaje protokolu sloja podatkovne poveznice (npr. Ethernet).
+
+TTL – eng. Time To Live
+Maksimalno vrijeme života paketa u mreži. Čvor koji obrađuje paket umanjuje vrijednost za jedan, a kada brojač dođe do nule paket se odbacuje. 
+
+MTU – eng. Maximum Transmission Unit
+Kod Ethernet standarda je MTU 1500 okteta
+
+Subnet mask
+Uz IP adresu se još i navodi maska podmreže u istom formatu kao i IP adresa.
+Maska podmreže navodi koliko bitova IP adrese se odnose na mrežnu identifikaciju, a koliko na identifikaciju krajnjeg računla.
+
+Sjetite se koja su dva načina na koji router može naučiti o udaljenim mrežama. Koja je prednost/mana jednoga, a koja drugog? 
+Router može naučiti o susjednim mrežama pomoću statičkih i dinamičkih ruta (RIP i OSPF).
+Prednost statičkih ruta je da mi možemo odrediti kojim putem idu paketi, a nedostaci da je neotporna na promjene i kvarove.
+Prednost dinamičkih ruta je da je otporna na promjene i kvarove, a nedostaci da imaju manju metriku od statičkih ruta i ne možemo kontrolirati put paketa.
+
+Koje su prednosti i nedostatci statičkog rutiranja? 
+Prednost statičkih ruta je da mi možemo odrediti kojim putem idu paketi, a nedostaci da je neotporna na promjene i kvarove.
+
+Koje su prednosti i nedostatci dinamičkog rutiranja?
+Prednost dinamičkih ruta je da je otporna na promjene i kvarove, a nedostaci da imaju manju metriku od statičkih ruta i ne možemo kontrolirati put paketa.
+
+STATIČKO RUTIRANJE(PREDNOSTI I NEDOSTACI)
++ laka konfiguracija, sigurnije rute koje nisu zahtjevne za router
+- unos velikog broja mreža logistički zahtjevno,rute nisu otporne na promjene na mreži te su teške za održavanje
+
+DINAMIČKO RUTIRANJE(PREDNOSTI I NEDOSACI)
++ automatsko reagiranje na promjene, manja vjerovatnost ljudske pogreške, praktičnije za održavanje
+-ovisnost o protokolu, dodatno opterećivanje routera, router sam odabire put koji nije uvijek optimalan
+
+PROTOKOLI DINAMIČKOG RUTIRANJA
+-RIP-> usmjerava pakete prema broju skokova (odnosno udaljenosti između mreža)
+-OSPF-> određuje put slanja na temelju najveće propusnosti; mreža se može dijeliti na više zona
+
+ARP (ČEMU SLUŽI, KOJEG JE SLOJA?)
+ARP je protokol mrežnog sloja koji dohvaća MAC adrese preko IP adresa.  (broadcasta) 
+Prevodi virtualne u fizičke(hardverske) adrese korištenjem tablice, izračunavanjem ili izmjenom poruka.
+Protokol mrežnog sloja koji služi za popunjavanje ARP tablice. 
+ARP tablica služi za spremanje parova IP i MAC adresa.
+
+ICMP(ŠTO JE, ČEMU SLUŽI?)
+ICMP  je protokol mrežnog sloja koji služi kontroli prijenosa podataka (šalje poruke ovisno o uspješnosti slanja paketa).
+Protokol mrežnog sloja i sastavni dio IP protokola. 
+Osnovna namjena ICMP protokola je osigurati kontrolu prijenosa podataka do odredišta.
+
+PRIVATNE IP ADRESE ( ŠTO SU I ČEMU SLUŽE?SMIJU LI SE KORISTITI NA INTERNETU?)
+To su adrese rezervirane za privatnu (lokalnu upotrebu) bez službenog ovlaštenja. Ne smiju se koristiti na internetu.
+10.0.0.0/8
+172.16.0.0/12
+192.168.0.0/16
+Slože za adresiranje uređaja u lokalnim mrežama i snjima se ne smije izlaziti na internet.
+
+ŠTO JE ROUTING TABLICA I ČEMU SLUŽI?
+Routing tablicu router koristi da odredi na koje će sućelje poslati paket. Povezuje IP adrese s portovima.
+Routing tablica je tablica koja se nalazi u uređajima (uređaji minimalno trećeg sloja) i definira na koje sučelje treba proslijediti paket u odnosu na destinacijsku IP adresu u primljenom paketu.
+
+ŠTO JE ARP TABLICA I ČEMU SLUŽI?
+To je tablica u kojoj su podaci o IP adresama i njima pripadajućim MAC adresama. 
+#(Služi za spremanje parova MAC i IP adresa.)
+
+HOĆE LI ROUTER PROSLJEĐIVATI ARP PAKETE NA SVOJA PREOSTALA SUČELJA?
+Ne. ARP paketi se šalju samo u domeni razašiljanja.
+
+KOJA JE DESTINATION MAC ADRESA U ARP REQUEST PAKETU?
+FF.FF.FF.FF.FF.FF
+
+KOJA JE DESTINATION MAC ADRESA U ARP REPLY PAKETU?
+MAC adresa pošiljatelja requesta u lokalnoj mreži. 
+
+Što je default gateway? Čemu služi? Ako ga nema?
+To je router koji služi za prosljeđivanje paketa van lokalne mreže. Ako ga nema, podaci ne mogu biti poslani van lokalne mreže.
+To je IP adresa sučelja za izlazak iz mreže. Računalo šalje na tu adresu sve pakete čija odredišna IP adresa ne pripada njegovoj mreži.
+
+KOLIKO JE RASPOLOŽIVIH IP ADRESA U IP ADRESNOJ  MREŽI SA SUBNET MASKOM 255.255.252.0? -> 1022
+
+ŠTO JE DOMENA RAZAŠILJANJA? KOJI MREŽNI UREĐAJ JU PREKIDA?
+To je skup (raspon) IP adresa koje mogu međusobno komunicirati.
+Domena razašiljanja je lokalna mreža. Router prekida domenu razašiljanja.
+
+ŠTO JE TTL?
+To je broj skokova koje router računa u svrhu sprječavanja beskonačne petlje slanja paketa.
+
+ŠTO JE VLAN I ČEMU SLUŽI?
+VLAN je virtualna mreža pomoću koje određujemo domenu razašiljanja (može se  dinamički mijenjati i nije ovisna o fizičkoj topologiji mreže). VLAN je logičko grupiranje korisnika u lokalnu mrežu i služi smanjenju domene razašiljanja.
+
+ZAŠTO KAŽEMO DA JE ROUTER UREĐAJ 3. SLOJA?
+Zato što koristi protokole mrežnog sloja(IP,ICMP,ARP). Zato što radi na razini mrežnog sloja.
+
+NAVEDITE SLOJEVE TCP/IP PROTOKOLA I JEDNOM REČENICOM OBJASNITE ULOGU SVAKOG OD NJIH.
+Aplikacijski sloj - sloj nabliži korisniku, služi za prezentaciju podataka korisniku, enkriciju dekripciju i uspostavljanje i prekidanje sesija.
+Transportni sloj - adresiranje preko portova - brine se da podaci stignu do određene aplikacije.
+Mrežni sloj - brine se da podaci stignu do određenog uređaja. (IP adrese)
+Sloj Pod pov. - služi za komunikaciju uređaja u istoj mreži (MAC adrese)
+Fizički sloj - prenosi podatke kroz fizički medij
+
+ROUTER?
+Router je uređaj 3. sloja koji služi za spajanje više odvojenih lokalnih mreža i tehnologija
+
+KOJI STANDARD SLOJA PODATKOVNE POVEZNICE SMO DO SAD OBRAĐIVALI? KOJEM SLOJU ON PRUŽA USLUGU?
+Ethernet. On pruža uslugu mrežnom sloju.
+
+Što je ISP? 
+Internet Service Provider je tvrtka koja svojim korisnicima pruža uslugu pristupa internetu.
+
+ZAŠTO NAM TREBAJU FGE I CGE?(bakar i optika)
+Lokalno koristimo bakar (CGE) jer je jeftin te ima dobru provodljivost na male udaljenosti. Gradove povezujemo s optikom (FGE) zbog puno 
+veće brzine (no, skupa je i kabel se ne smije savijati).
+
+ROOT?
+Onaj kojemu dodijelimo ulogu glavnog switcha; svi portovi su mu forward.
+
+HTTP protokol
+je protokol aplikacijskog sloja koji koristi TCP protokol kako protokol transportnog sloja. Po defaultu sluša na portu 80. Služi za prijenos datoteka koje u sebi sadrže veze na druge dokumente (npr. HTML)
+
+TCP i UDP protokoli
+uvode mehanizme adresiranja procesa koji su pokrenuti na računalima. Procesi se jedinstveno označavaju 16-bitnim brojem (0 – 65545) koji se u Internet terminologiji nazivaju vratima (eng. Port). Figurativno gledano port možete zamisliti kao prozor kroz koji aplikacija gleda u svijet. Sve mrežne aplikacije koje svoj rad temelje na TCP/IP stogu komuniciraju s ostatkom svijeta kroz određene TCP/UDP portove.
+
+Transportni sloj
+Aplikacije koje zahtijevaju da informacija dođe do odredišta pouzdano, sigurno i točno koriste TCP protokol kao protokol transportnog sloja. 
+TCP protokol pruža spojnu uslugu aplikacijskom sloju odnosno aplikacijama koje ga koriste. S obzirom da TCP koristi brojne mehanizme da paketi stignu na odredište ispravni, brzina prijenosa korisnih podataka je sporija.
+
+Ukoliko Aplikacija ne zahtjeva pouzdani nego brzi prijenos koristit će UDP protokol kao protokol transportnog sloja. 
+On pruža nepouzdanu uslugu, ali zato brže dostavlja pakete od izvorišta do odredišta.
+
+TCP (eng. Transmission Control Protocol)
+TCP je protokol transportnog sloja koji pruža spojnu uslugu aplikacijskom sloju. Prije slanja informacija uspostavlja se veza (eng. three way handshake). Nakon što je potrebna informacija poslana, veza se prekida. 
+TCP protokol uvodi RTO (eng. Retransmission Timeout), vremenski period nakon kojeg ponovno šalje isti segment ako ne dobije potvrdu (!)
+
+Socket
+Kombinacija IP adrese krajnjeg računala i porta procesa pokrenutog na računalu se u Internet terminologiji naziva utičnica (eng. Socket). Na poslužiteljskom računalu za procese koje pružaju neke usluge klijentima kažemo da „slušaju” na unaprijed definiranim portovima.
+
+Portovi
+Dobro znani portovi – portovi koje koriste sistemski procesi odnosno koje koriste poznate aplikacije kada primaju konekcije pasivno slušajući promet na tim portovima. Dodjeljuje ih IANA (Interent Assigned Numbers Authority)
+Registirani portovi – koriste ih aplikacije krajnjih korisnika kao izvorišni portovi prilikom uspostavljanja konekcija prema poslužitelju.
+Dinamički/privatni portovi – koriste se također na strani klijenta. Npr. procesu koji služi za spajanje na poslužitelje se dodijeli neki random generirani port iz raspona privatnih portova.
+
+Javne IP adrese
+To su adrese s kojima korisnici izlaze na Internet iz svojih privatnih mreža. Mogu biti statičke i dinamičke.
+
+Javna – IP adresa je javna odnosno javno je dostupna preko Interneta. „Vidljiva” je svima koji su spojeni na Internet
+Dinamička – Znači da se mijenja. Ne možete znati u bilo kojem trenutku koja je vaša vanjska IP adresa. Ukoliko želite statičku adresu morate to dodatno zatražiti (i platiti) od strane ISP-a.
+
+Svi paketi koji izlaze iz vaše lokalne mreže na Internet, izlaze preko vama dodijeljene javne IP adrese pri čemu se koriste NAT (eng. Network Address Translation) i PAT (eng. Port Address Translation) translacije.
+
+HTTP - eng. HyperText Transfer Protocol
+je prvi protokol aplikacijskog sloja. Kada u web pretraživač upišete adresu web stranice (odnosno web servera na kojem se nalazi tražena stranicu u obliku HTML koda), generira se paket (od aplikacijskog do fizičkog sloja) koji služi za slanje preko mreže. HTTP protokol koristi uslugu TCP protokola transportnog sloja.
+Poslužitelj na kojem je instaliran i pokrenut web servis (npr. Apache) sluša na dobro poznatom portu 80. To je defaultni port na kojem radi HTTP protokol.
+Klijent zatraži od servera HTML datoteku (na zadanoj putanji u datotečnom sustavu web servera) i server mu vraća HTML datoteku ukoliko je sve u redu. Ako nastanu problemi, server vraća statusni kod koji označava problem koji je nastao.
+
+DHCP - eng. Dynamic Host Configuration Protocol
+je protokol koji služi za dodjeljivanje TCP/IP parametara (IP adresa, subnet maska, default gateway, DNS server) na klijentskim računalima.
+DHCP služi za pojednostavljivanje konfiguracija IP klijenata u mrežnom okruženju. DHCP kao protokol aplikacijskog sloja koristi uslugu UDP protokola transportnog sloja. Port izvorišnog računala (računala koje traži uslugu) je po defaultu 68, a port na kojem DHCP servere „sluša“ i čeka konekciju je po defaultu 67.
+
+DHCPDISCOVER
+je broadcast paket kojeg računalo koje želi dobiti svoju IP adresu šalje svim računalima u mreži (domena razašiljanja!). Izvorišna MAC adresa je MAC adresa računala, odnosno fizička adresa mrežne kartice, dok je izvorišna IP adresa 0.0.0.0 jer računalo još uvijek nema IP adresu.
+Odredišna MAC adresa je FF:FF:FF:FF:FF:FF jer se radi o broadcast paketu. Odredišna IP adresa je 255.255.255.255, također zbog broadcast paketa.
+
+DHCPOFFER
+je paket kojeg DHCP server šalje računalu koje je zatražilo IP adresu. U tom paketu na razini aplikacijskog sloja server nudi neku od adresa koje ima na raspolaganju, a pripadaju mreži u kojoj se nalaze. Izvorišna MAC adresa je MAC adresa DHCP servera, kao i izvorišna IP adresa. Odredišna IP adresa je 255.255.255.255 jer računalo koje je zatražilo IP adresu još uvijek nema IP adresu. No zato je odredišna MAC adresa MAC adresa računala koje je tražilo uslugu.
+
+DCHCPREQUEST
+je paket kojeg šalje izvorišno računalo s kojim prihvaća ponuđenu IP adresu. Također, taj paket je broadcast jer na taj način obavještava sva računala u mreži da je upravo on uzeo određenu IP adresu.
+
+DCHCPACK
+je paket kojeg šalje server koji obavještava klijenta da je proces dodijele IP adrese gotov. U tom paketu se nalazi svi parametri koji su konfigurirani na DHCP serveru poput dodijeljene IP adrese, subnet maske, IP adrese DNS servera, vremena trajanja IP adrese itd.
+
+Lease time
+Vrijeme za koje računalo može koristiti ponuđenu adresu se zove Lease Time i konfigurira se na samom DHCP serveru. Vi kao administrator mreže odlučujete koju vrijednost želite postaviti za Lease Time.
+
+DNS – eng. Domain Name System
+je protokol koji služi za pretvaranje imenskih adresa u IP adrese. S obzirom da računala rade s IP adresama nemoguće je isto to očekivati od ljudi. Npr. kada preko web browsera želite dohvatiti HTML stranicu sa googleovog servera vi ćete upisati google.hr u tražilicu. U pozadini se pokreće DNS proces u kojem vaše računalo traži od DNS servera da mu kaže koja IP adresa odgovara imenu google.hr.
