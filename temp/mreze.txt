@@ -1,0 +1,149 @@
+Internet
+je mreža svih mreža. Sastoji se od velike količine međusobno povezanih LAN i WAN mreža i tvori najveću mrežu na svijetu. Internet nije ni u čijem vlasništvu!
+
+Intranet
+je često nazivan i “lokalni internet” jer koristi sve iste tehnologije koje se koriste i na internetu, ali je pristup ograničen samo zaposlenicima tvrtke. Intranet je u principu privatni Internet.
+
+ISP – eng. Internet Service Provider
+je tvrtka koja omogućava usluge pristupanja, korištenja i sudjelovanja u internetu. Postoje 3 razine ISP-a.
+
+Bandwidth [Hz]
+B [Hz] - Širina frekvencijskog pojasa koja se može upotrijebiti za prijenos. Fizikalno svojstvo prijenosnog medija, opisano najvišom frekvencijom koja se može prenijeti.
+B [bit/s] - Maksimalni broj bita koji se može prenijeti u jedinici vremena kroz prijenosni medij.
+
+Throughput [bit/s]
+Broj korisnih bitova koji se mogu prenijeti u jedinici vremena.
+
+Delay, latency [s]
+Vrijeme potrebno da bit s izvora stigne na odredište.
+
+Packet loss [%]
+Ovisi o brzini obrade paketa u pojedinim čvorovima kroz mrežu. Pri prijenosu paketa i njihovoj obradi u čvorovima u mreži može doći do stvaranja redova čekanja. Ovaj slučaj nastupa kod velike opterećenosti i zagušenja mreže kada pojedini čvor u svoju memoriju ne može primiti novi paket jer za njega nema mjesta.
+
+Protokol
+skup pravila i formata (sintaksa i semantika) koji određuju komunikacijsko ponašanje u N-tom sloju
+
+Spojna usluga
+razmjeni jedinica prethodi uspostavljanje veze (stvarne, virtualne, logičke…) kojim se određuje put kroz mrežu, a po završetku razmjene podataka veza se prekida. Sve jedinice podataka razmjenjuju se na isti način koji određuje uspostavljena veza.
+
+Nespojna usluga
+svaka jedinica podataka se razmjenjuje (usmjerava i isporučuje)  za sebe neovisno o ostalima. Nepouzdana usluga jer ne jamči isporuku na odredištu i ne potvrđuje primitak na odredištu. 
+
+OSI
+------------------------------------------------------------------------------------------------------------------
+Aplikacijski sloj
+Sloj koji spaja aplikaciju (npr. Mozila Firefox) i mrežni softver.
+Sloj koji je najbliži korisniku. 
+Skup programa koji omogućuju mrežnu komunikaciju.
+Skup protokola za korisničke usluge i aplikacije (Outlook, klijentska aplikacija za spajanje na bazu podataka…).
+
+Prezentacijski sloj
+Sloj koji uspostavlja pravila koja će se koristiti prilikom komunikacije (npr. Jezik kod ljudi)
+Zadaća mu je prevesti tekst koji se želi poslati u jezik razumljiv mrežnom softveru.
+Vrši se enkripcija i dekripcija podataka.
+
+Sloj sesije
+Sloj koji je zadužen za uspostavu i održavanje sesije između procesa koji komuniciraju.
+Npr. Gledanje Videa preko interneta.
+Uspostavlja, održava i prekida dijalog.
+Zadaća mu je nastaviti komunikaciju u slučaju prekida.
+
+Transportni sloj
+Prijenos podataka s jednog kraja mreže na drugi (end-to-end)
+Segmentacija podataka.
+Transportne usluge: -prijenos bez pogrešaka -prijenos uz najmanje kašnjenje
+Upravljanje pogreškama 
+Upravljanje tokom
+
+Mrežni sloj
+Prijenos podataka između dva krajnja uređaja u mreži.
+Međusobno povezivanje mreža i podmreža.
+Usmjeravanje jedinica podataka odnosno paketa.
+Upravljanje pogreškama. 
+Upravljanje tokom.
+
+Sloj podatkovne poveznice
+Jedinica podataka - okvir
+Prijenos okvira od točke do točke ili od točke do više točaka na istoj poveznici.
+Upravljanje pogreškama.
+Upravljanje tokom.
+
+Fizički sloj
+Jedinica podataka - bit
+Prijenos slijeda bitova.	
+Mehaničko, električko, fotoničko i vremensko sučelje s prijenosnim medijem:	-žični -optički	-bežični
+------------------------------------------------------------------------------------------------------------------
+
+TCP/IP
+------------------------------------------------------------------------------------------------------------------
+Aplikacijski sloj
+Kombinacija aplikacijskog, prezentacijskog i sesijskog sloja iz OSI modela.
+Uključuje krajnje aplikacije kroz koje korisnici komuniciraju preko mreže.
+Brine se za prezentaciju podataka korisniku, enkripciju i dekripciju te uspostavljanje i prekidanje sesija.
+Sloj koji je najbliži korisniku!
+
+Transportni sloj
+Transportni sloj pruža uslugu aplikacijskom sloju, a koristi usluge mrežnog sloja.
+Brine se da podatci stignu do odgovarajuće aplikacije na odredišnom uređaju.
+Uvodi adresiranje preko “portova”.
+Protokoli: TCP, UDP
+
+Mrežni sloj
+Mrežni sloj pruža uslugu trasnportnom sloju, a koristi usluge sloja podatkovne poveznice.
+Brine se da podatci stignu do odgovarajuće odredišnog uređaja.
+Usmjeritelj je L3 uređaj koji služi za povezivanje dvije ili više mreža.
+Uvodi adresiranje preko IP adrese.
+Protokoli: IP, ICMP, ARP
+
+Sloj podatkovne poveznice
+Sloj podatkovne poveznice pruža usluge mrežnom sloju, a kotisti usluge fizičkog sloja 
+Komutator je L2 uređaj.
+Sloj podatkovne poveznice služi za komunikaciju uređaja koji se nalaze na istoj poveznici odnosno u istoj mreži.
+Uvodi se adresiranje preko MAC adresa.
+Sloj podatkovne poveznice sloju iznad sebe pruža uslugu. Usluga se može dijeliti po načinu razmjene jedinica podataka na:
+	- spojnu
+	-	nespojnu
+I po vrsti usluge s obzirom na potvrdu prijama na:
+	-	bez potvrde
+	-	s potvrdom
+
+Fizički sloj
+Najniži sloj modela.
+Pruža usluge svim višim slojevima.
+Jedinica podataka bit
+Definira način prijenosa jedinice podataka kroz stvarni fizički medij.
+Bitovi se mogu prenositi električki, optički i bežično.
+------------------------------------------------------------------------------------------------------------------
+
+Ispravljač(Hub)
+Povezuje krajnje uređaje u lokalnu mrežu.
+Ispravljač je uređaj prvog sloja (L1)
+Prima pakete na jednom portu i odašilje na sve ostale portove (problem  sigurnosti).
+Ispravljač ne razdvaja domene sudara ni razašiljanja.
+
+Komutator(Switch)
+Povezuje krajnje uređaje u lokalnu mrežu.
+Komutator je uređaj prvog sloja (L2)
+Prima pakete na jednom portu i odašilje na jedan od izlaznih portova u ovisnosti o odredišnoj MAC adresi (adresa drugog sloja)
+Komutator preusmjerava pakete na temelju odredišne MAC adrese u zaglavlju Ethernet okvira.
+Za razliku od Ispravljača (eng. Hub) koji također služi za spajanje više uređaja u lokalnu mrežu, komutator okvire prosljeđuje samo na portove na kojima se nalaze uređaji s odredišnom MAC adresom.
+Komutator razdvaja domene sudara, ali ne razdvaja domene razašiljanja.
+
+Usmjeritelj(Router)
+Povezuje dvije ili više lokalnih mreža i/ili tehnologija.
+Usmjeritelj je uređaj trećeg sloja (L3)
+Prima pakete na jednom portu i odašilje na jedan od izlaznih portova u ovisnosti o odredišnoj IP adresi (adresa trećeg sloja)
+
+Optička vlakna vs parica
+Veća brzina prijenosa (Gbps, Tbps)
+Malo gušenje signala, veće duljine kablova (do 100km)
+Neosjetljivost na elektromagnetske utjecaje i koroziju.
+Tanka i lagana
+Jednosmjerni prijenos (potrebna dva vlakna)
+Optička sučelja i oprema složena i skupa
+Realizacija i održavanje skupo i složeno
+
+Ethernet
+predstavlja skup tehnologija primjenjenih unutar lokalnih mreža. Na fizičkoj razini ethernet definira raspored ožičenja te vrste i razine signala za prijenos podataka. Na razini podatkovne veze ethernet definira način pristupa mediju za prijenos podataka (MAC – Media Access Control) i definira zajednički adresni format. Standardiziran je kroz IEEE 802.3 standard.
+Podsloj MAC  ima za zadaću dinamičku dodjelu prijenosnog medija stanici u lokalnoj mreži. Izvodi se na mrežnoj kartici stanice ili u priključku mrežnog uređaja (port). Pristupni protokoli su pravila koja određuju redosljed pristupanja mediju.
+
